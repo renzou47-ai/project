@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Renzou. | Pemula Web Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  
+  <style>
+    :root {
+      --primary: linear-gradient(135deg, #4A00E0, #8E2DE2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 1.2rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-menu a:hover { color: white; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 8% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      background: radial-gradient(circle at center, rgba(74,0,224,0.15), transparent 70%);
+    }
+
+    .hero-text h1 {
+      font-size: 4.8rem;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text .name {
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      color: #bbb;
+      margin: 1.5rem 0 2.5rem;
+      max-width: 480px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.4s;
+      margin-right: 15px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(74,0,224,0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid #8E2DE2;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: #8E2DE2;
+      color: white;
+    }
+
+    .social-icons a {
+      color: #bbb;
+      font-size: 1.8rem;
+      margin-right: 20px;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #8E2DE2;
+      transform: translateY(-4px);
+    }
+
+    .profile-img {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 20px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.75);
+      border: 6px solid rgba(142,45,226,0.3);
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 8%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* About */
+    .about-section {
+      background: #111;
+      padding: 3rem;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    .about-text {
+      font-size: 1.15rem;
+      color: #ccc;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+      background: #1a1a1a;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: #111;
+      padding: 1.8rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #222;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 50px;
+      transition: width 1.8s ease;
+    }
+
+    /* Projects */
+    .project-card {
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      gap: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .project-img {
+      width: 180px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .contact-box:hover {
+      background: #1a1a1a;
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 8%;
+      color: #777;
+      background: #0a0a0a;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .hero, .about-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-text h1 { font-size: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Renzou.</div>
+    <ul class="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-text fade-in">
+      <p style="font-size:1.3rem; color:#aaa;">Halo, saya</p>
+      <h1><span class="name">Renzou</span></h1>
+      <p style="font-size:1.45rem; margin:10px 0 20px;">Pemula Web Developer</p>
+      
+      <p>Saya di dikenal sebagai Renzou 👋
+         Sekarang sedang aktif memperdalam skill membuat website dengan HTML, CSS, dan JavaScript 💻🚀
+           Saya mempunyai mimpi menjadi developer yang dikenal secara global 🌍✨.</p>
+
+      <div style="margin: 2.5rem 0;">
+        <a href="#projects" class="btn btn-primary">Lihat Project</a>
+        <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+      </div>
+
+      <div class="social-icons fade-in">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="fade-in">
+      <img src="rendi.jpg" alt="Renzou" class="profile-img"/>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-section fade-in">
+      <div class="about-text">
+        Saya seorang pelajar yang tertarik di dunia teknologi dan pemrograman. Saat ini saya fokus belajar web development dan membangun project sederhana untuk mengasah skill.
+      </div>
+      <div>
+        <div class="info-item"><i class="fas fa-calendar-alt"></i> <strong>Umur</strong>  21 Tahun</div>
+        <div class="info-item"><i class="fas fa-envelope"></i> <strong>Email</strong>  renzou47@gmail.com</div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i> <strong>Lokasi</strong>  bengkulu</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" style="background:#111;">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <span><i class="fab fa-html5" style="color:#E34F26;"></i> HTML</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar"><div class="progress" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <span><i class="fab fa-css3-alt" style="color:#1572B6;"></i> CSS</span>
+          <span>80%</span>
+        </div>
+        <div class="progress-bar"><div class="progress" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <span><i class="fab fa-js" style="color:#F7DF1E;"></i> JavaScript</span>
+          <span>60%</span>
+        </div>
+        <div class="progress-bar"><div class="progress" style="width:60%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <span><i class="fab fa-bootstrap" style="color:#7952B3;"></i> Bootstrap</span>
+          <span>70%</span>
+        </div>
+        <div class="progress-bar"><div class="progress" style="width:70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card fade-in">
+      <img src="rendiu.jpg" alt="Project" class="project-img" />
+      <div style="flex:1;">
+        <h3>Website Portofolio</h3>
+        <p>Website portofolio sederhana yang dibuat menggunakan HTML & CSS.</p>
+        <p style="margin-top:15px;"><strong>HTML, CSS</strong></p>
+        <a href="#" style="margin-top:20px; display:inline-block; padding:10px 24px; background:#4A00E0; color:white; border-radius:50px; text-decoration:none;">Lihat Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background:#111;">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-box fade-in">
+        <i class="fas fa-envelope" style="font-size:2rem; margin-bottom:1rem;"></i>
+        <h3>Email</h3>
+        <p>renzou47@gmail.com</p>
+      </div>
+      <div class="contact-box fade-in">
+        <i class="fab fa-instagram" style="font-size:2rem; margin-bottom:1rem; color:#E1306C;"></i>
+        <h3>Instagram</h3>
+        <p>@rendiiptrr_</p>
+      </div>
+      <div class="contact-box fade-in">
+        <i class="fab fa-github" style="font-size:2rem; margin-bottom:1rem;"></i>
+        <h3>GitHub</h3>
+        <p>github.com/renzou</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Renzou. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Fade in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
